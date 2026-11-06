@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Free Loan Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0b2575;
+            --accent-blue: #0056b3;
+            --bright-red: #e60000;
+            --gold-yellow: #ffcc00;
+            --gold-border: #f0a500;
+            --bg-gradient: radial-gradient(circle, #1a49c4 0%, #06184a 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 24px;
+            border: 4px solid var(--gold-yellow);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Banner Styling matching poster */
+        .header {
+            background: linear-gradient(180deg, #0d38a8 0%, #061b54 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 15px 15px;
+            position: relative;
+            border-bottom: 5px solid var(--gold-yellow);
+        }
+
+        .header .sub-head {
+            color: #ffeb3b;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+            line-height: 1;
+            margin: 5px 0;
+        }
+
+        .no-pan-badge {
+            background: linear-gradient(90deg, #ff0000, #b30000);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 2px solid #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 12px 15px;
+            background: #eef4ff;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border: 1.5px solid #bcdcff;
+            border-radius: 20px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-item span {
+            background: #28a745;
+            color: #fff;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        /* Form Styling */
+        form {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #ccd6e0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 8px rgba(0,86,179,0.2);
+        }
+
+        /* Radio buttons styling */
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-blue);
+        }
+
+        /* Interest Box */
+        .interest-card {
+            background: #fff8e1;
+            border: 2px dashed #ffa000;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .interest-card p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .interest-rate-badge {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .calc-result {
+            font-size: 16px;
+            font-weight: 800;
+            color: #d32f2f;
+        }
+
+        /* Apply Button */
+        .btn-apply {
+            width: 100%;
+            background: linear-gradient(180deg, #ff3333 0%, #b30000 100%);
+            color: #ffffff;
+            border: 2px solid #ffcc00;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(230, 0, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 0, 0, 0.6);
+        }
+
+        .btn-apply:active {
+            transform: translateY(1px);
+        }
+
+        /* Success Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border: 3px solid var(--gold-yellow);
+        }
+
+        .modal-content h2 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .btn-close {
+            background: var(--primary-blue);
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="sub-head">Your Financial Partner</div>
+        <h1>FREE LOAN</h1>
+        <div class="no-pan-badge">Without PAN Card</div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-item"><span>✓</span> Instant Approval</div>
+        <div class="feature-item"><span>✓</span> 100% Online Process</div>
+        <div class="feature-item"><span>✓</span> Zero Documents</div>
+        <div class="feature-item"><span>✓</span> Low Interest Rate</div>
+    </div>
+
+    <form id="loanForm" onsubmit="handleFormSubmit(event)">
+        <!-- Name -->
+        <div class="form-group">
+            <label for="fullName">पूरा नाम (Full Name) *</label>
+            <input type="text" id="fullName" placeholder="अपना नाम दर्ज करें" required>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+            <label for="address">पूरा पता (Full Address) *</label>
+            <textarea id="address" rows="2" placeholder="अपना पूरा पता दर्ज करें" required></textarea>
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="form-group">
+            <label for="mobile">मोबाइल नंबर (Mobile Number) *</label>
+            <input type="number" id="mobile" placeholder="10-अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group">
+            <label for="email">ईमेल आईडी (Email Address) *</label>
+            <input type="email" id="email" placeholder="example@mail.com" required>
+        </div>
+
+        <!-- PAN Card Option -->
+        <div class="form-group">
+            <label>क्या आपके पास पेन कार्ड है? (Have PAN Card?)</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="hasPan" value="yes" onchange="togglePanInput(true)"> Haan (Yes)
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hasPan" value="no" checked onchange="togglePanInput(false)"> Nahi (No)
+                </label>
+            </div>
+        </div>
+
+        <!-- PAN Number Field (Conditional) -->
+        <div class="form-group" id="panField" style="display: none;">
+            <label for="panNumber">पेन कार्ड नंबर (PAN Card Number)</label>
+            <input type="text" id="panNumber" placeholder="ABCDE1234F" style="text-transform: uppercase;">
+        </div>
+
+        <!-- Loan Amount -->
+        <div class="form-group">
+            <label for="loanAmount">ऋण राशि (Loan Amount in ₹) *</label>
+            <input type="number" id="loanAmount" placeholder="जैसे: 10000" min="100" oninput="calculateInterest()" required>
+        </div>
+
+        <!-- Interest Calculation Box -->
+        <div class="interest-card">
+            <div class="interest-rate-badge">ब्याज़ दर: ₹10 पर 0.50 पैसे (₹100 पर ₹5 / 5%)</div>
+            <p>अनुमानित ब्याज़ (Estimated Monthly Interest):</p>
+            <div class="calc-result" id="interestDisplay">₹0</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-apply">Apply Now ➔</button>
+    </form>
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <h2>आवेदन सफल! (Successful)</h2>
+        <p>आपका लोन आवेदन दर्ज कर लिया गया है। हमारी टीम जल्द ही आपसे संपर्क करेगी।</p>
+        <button class="btn-close" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<script>
+    function togglePanInput(show) {
+        const panField = document.getElementById('panField');
+        panField.style.display = show ? 'block' : 'none';
+        if (!show) {
+            document.getElementById('panNumber').value = '';
+        }
+    }
+
+    function calculateInterest() {
+        const amount = parseFloat(document.getElementById('loanAmount').value) || 0;
+        // Calculation: 0.50 paise per 10 rupees = 5% interest
+        const interest = amount * 0.05;
+        document.getElementById('interestDisplay').innerText = `₹${interest.toLocaleString('en-IN')} / महीना`;
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+        document.getElementById('loanForm').reset();
+        calculateInterest();
+        togglePanInput(false);
+    }
+</script>
+
+</body>
+</html>
